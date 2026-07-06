@@ -1,0 +1,429 @@
+/* ===================================================
+   LOCOMOTIVE STYLE HERO REDESIGN
+   - Giant typography
+   - Pearl White background with Black Text
+   - Background Video overlay
+   - Custom Cursor
+   - Smooth Slide-up animations
+   =================================================== */
+
+/* ── Custom Cursor ── */
+.loco-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 16px; height: 16px;
+  background-color: #f97316; /* vibrant accent */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background-color 0.3s ease;
+  mix-blend-mode: exclusion;
+}
+.loco-cursor.hovering {
+  width: 60px; height: 60px;
+  background-color: #fff;
+  mix-blend-mode: exclusion;
+}
+
+/* ── Hero Container ── */
+.loco-hero {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #13111e; /* Pure black text */
+  overflow: hidden;
+  padding: 0 4vw;
+  z-index: 1;
+}
+
+/* ── Background Video Layer ── */
+.loco-video-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* Behind content */
+  overflow: hidden;
+}
+.loco-bg-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1; /* Fully visible video */
+}
+.loco-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(247, 246, 243, 0.65); /* Pearl white transparent overlay to keep black text readable */
+}
+
+/* ── Locomotive Top / Tag ── */
+.loco-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 20vh;
+  padding-bottom: 5vh;
+}
+.loco-top-bar {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #888;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 1rem;
+}
+
+/* ── Giant Typography ── */
+.loco-title {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-size: clamp(4rem, 9vw, 12rem);
+  font-weight: 800;
+  will-change: transform;
+}
+.line-wrap {
+  overflow: hidden;
+  display: block;
+}
+.line-inner {
+  display: block;
+  transform: translateY(120%);
+  animation: slideUpLoco 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+/* Stagger the lines */
+.line-wrap:nth-child(1) .line-inner { animation-delay: 0.1s; }
+.line-wrap:nth-child(2) .line-inner { animation-delay: 0.2s; }
+.line-wrap:nth-child(3) .line-inner { animation-delay: 0.3s; }
+
+/* The mix of fonts is key to Locomotive style */
+.italic-text {
+  font-family: 'Playfair Display', "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: #4f46e5; /* The indigo/purple accent */
+  padding-right: 2vw; /* Ensure italic doesn't clip */
+}
+
+/* ── Locomotive Footer Row ── */
+.loco-footer-row {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.loco-desc {
+  max-width: 400px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #555;
+  font-weight: 500;
+}
+.loco-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  background: #13111e;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.loco-btn:hover {
+  transform: translateY(-5px);
+  background: #f97316;
+}
+
+/* GSAP-style Slide-Up Keyframes */
+@keyframes slideUpLoco {
+  0%   { transform: translateY(120%) rotate(3deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+/* Hide fallback structures */
+.phone-wrap { display: none; }
+
+/* ===================================================
+   EXTENDED ANIMATIONS v2 — Particles · Tilt · Magnetic
+   · Shimmer · Reveals · Gradient · Ripple · Preloader
+   =================================================== */
+
+/* ── Scroll Progress Bar ── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 10000;
+  background: linear-gradient(90deg, #5b47e0, #a78bfa, #f97316);
+  width: 0%;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 10px rgba(91,71,224,0.6), 0 0 20px rgba(91,71,224,0.3);
+  pointer-events: none;
+  transition: width 0.06s linear;
+}
+
+/* ── Page Preloader ── */
+.page-preloader {
+  position: fixed; inset: 0;
+  background: #f7f6f3;
+  z-index: 99999;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 24px;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+.page-preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-logo {
+  display: flex; align-items: center; gap: 10px;
+  animation: preloaderPulse 1.3s ease-in-out infinite;
+}
+.preloader-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem; font-weight: 800; color: #111110; letter-spacing: -0.02em;
+}
+.preloader-logo-accent { color: #5b47e0; }
+.preloader-bar {
+  width: 180px; height: 2px;
+  background: rgba(0,0,0,0.08); border-radius: 2px; overflow: hidden;
+}
+.preloader-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5b47e0, #8b5cf6);
+  border-radius: 2px;
+  animation: preloaderFill 1.6s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes preloaderPulse {
+  0%,100% { transform: scale(1);    opacity: 1;   }
+  50%      { transform: scale(1.06); opacity: 0.7; }
+}
+@keyframes preloaderFill {
+  0%   { width: 0%;   }
+  65%  { width: 80%;  }
+  100% { width: 100%; }
+}
+
+/* ── Title Wrapper (particles live here only) ── */
+.loco-title-wrap {
+  position: relative;
+  display: inline-block; /* shrink-wrap to the title size */
+  width: 100%;
+}
+
+/* ── Canvas Particles (behind title text only) ── */
+#hero-particles {
+  position: absolute;
+  /* extend slightly beyond the title on all sides for a soft halo effect */
+  top: -48px; left: -80px;
+  width: calc(100% + 160px);
+  height: calc(100% + 96px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* Title must sit above the canvas */
+.loco-title {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Mouse Glow Orb ── */
+.mouse-glow {
+  position: fixed; pointer-events: none; z-index: 0;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(91,71,224,0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(50px);
+  will-change: left, top;
+  transition: left 0.18s ease, top 0.18s ease;
+}
+
+/* ── 3D Tilt Cards ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ── Shimmer / Card Shine ── */
+.card-shine {
+  position: relative; overflow: hidden;
+}
+.card-shine::before {
+  content: '';
+  position: absolute; top: 0; left: -75%;
+  width: 55%; height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255,255,255,0.2) 50%,
+    transparent 65%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.65s ease;
+  pointer-events: none; z-index: 2;
+}
+.card-shine:hover::before { left: 130%; }
+
+/* ── Magnetic Buttons ── */
+.magnetic {
+  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1) !important;
+  display: inline-flex !important;
+}
+
+/* ── Ripple Effect ── */
+.btn-ripple { position: relative; overflow: hidden; }
+.ripple-wave {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.28);
+  transform: scale(0);
+  animation: rippleAnim 0.65s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(4.5); opacity: 0; }
+}
+
+/* ── Directional Reveal Variants ── */
+.reveal-left {
+  opacity: 0; transform: translateX(-50px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0; transform: translateX(50px);
+  transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0; transform: scale(0.87) translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Stagger delays for directional reveals */
+.reveal-left.delay-1,
+.reveal-right.delay-1,
+.reveal-scale.delay-1 { transition-delay: 0.10s; }
+.reveal-left.delay-2,
+.reveal-right.delay-2,
+.reveal-scale.delay-2 { transition-delay: 0.20s; }
+.reveal-left.delay-3,
+.reveal-right.delay-3,
+.reveal-scale.delay-3 { transition-delay: 0.30s; }
+
+/* ── Animated Gradient Text ── */
+@keyframes gradientPan {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+.gradient-text-animated {
+  background: linear-gradient(270deg, #5b47e0, #8b5cf6, #a855f7, #f97316, #5b47e0);
+  background-size: 300% 300%;
+  animation: gradientPan 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Floating Product Chips ── */
+.product-chip:nth-child(3n+1) { animation: chipFloat 4.5s ease-in-out infinite; }
+.product-chip:nth-child(3n+2) { animation: chipFloat 5.2s ease-in-out 0.8s infinite; }
+.product-chip:nth-child(3n)   { animation: chipFloat 4.8s ease-in-out 1.6s infinite; }
+.product-chip:hover            { animation: none !important; }
+@keyframes chipFloat {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-7px); }
+}
+
+/* ── Glowing Stat Cards ── */
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease !important;
+}
+.stat-card:hover {
+  box-shadow: 0 0 40px rgba(91,71,224,0.35), 0 8px 32px rgba(0,0,0,0.2) !important;
+  transform: translateY(-6px) !important;
+}
+
+/* ── Active Nav Indicator ── */
+.nav-link.active {
+  position: relative;
+}
+.nav-link.active::after {
+  content: ''; position: absolute; bottom: 2px; left: 50%; translate: -50% 0;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: #5b47e0;
+}
+
+/* ── Hero Parallax ── */
+.parallax-slow { will-change: transform; }
+
+/* ── Solution Card Icon Pulse on Hover ── */
+.solution-card:hover .sol-icon-wrap {
+  background: #ede9fb;
+  border-color: rgba(91,71,224,0.3);
+  box-shadow: 0 0 16px rgba(91,71,224,0.2);
+  transition: all 0.3s ease;
+}
+
+/* ── Why Card Number Glow ── */
+.why-card:hover .why-number {
+  color: rgba(91,71,224,0.25);
+  transition: color 0.3s ease;
+}
+
+/* ── Loco Badge ── */
+.loco-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; color: #3d3c39;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.09);
+  padding: 6px 14px; border-radius: 100px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.loco-badge::before {
+  content: ''; display: inline-block;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34,197,94,0.7);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ── Footer gradient top bar pulse ── */
+.footer-top-bar {
+  height: 2px;
+  background: linear-gradient(90deg, #5b47e0, #8b5cf6, #f97316, #8b5cf6, #5b47e0);
+  background-size: 300% 100%;
+  animation: gradientPan 5s ease infinite;
+}
+
+/* ── Scroll-to-top fade hint ── */
+@keyframes scrollHint {
+  0%,100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+.loco-tag { animation: scrollHint 2s ease-in-out infinite; display: inline-block; }

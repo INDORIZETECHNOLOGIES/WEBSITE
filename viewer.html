@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: sans-serif; background: #222; color: #fff; margin: 0; padding: 20px; }
+  #frames { display: flex; flex-wrap: wrap; gap: 10px; }
+  canvas { background: #000; width: 320px; border: 1px solid #444; }
+</style>
+</head>
+<body>
+  <h1>Video Frames</h1>
+  <div id="frames"></div>
+  <script>
+    const video = document.createElement('video');
+    video.src = 'reference.mov';
+    video.muted = true;
+    
+    video.addEventListener('loadeddata', async () => {
+      const duration = video.duration;
+      const frameCount = 12;
+      const interval = duration / frameCount;
+      const container = document.getElementById('frames');
+
+      for (let i = 0; i < frameCount; i++) {
+        const time = i * interval;
+        video.currentTime = time;
+        await new Promise(r => video.addEventListener('seeked', r, { once: true }));
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'red';
+        ctx.font = '48px Arial';
+        ctx.fillText(`Time: ${time.toFixed(1)}s`, 50, 50);
+        
+        container.appendChild(canvas);
+      }
+      
+      // Notify when done
+      const h1 = document.querySelector('h1');
+      h1.textContent = 'Video Frames (DONE)';
+    });
+  </script>
+</body>
+</html>
