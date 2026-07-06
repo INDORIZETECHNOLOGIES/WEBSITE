@@ -6,11 +6,15 @@
 // 2. Add Email Service (Gmail) → copy Service ID
 // 3. Create Template (use vars: {{from_name}} {{from_email}} {{company}} {{interest}} {{message}})
 // 4. Account → API Keys → copy Public Key
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+// Read from Vite env vars if provided, otherwise fall back to the original
+// placeholders so behavior is unchanged when no .env file is present.
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || 'YOUR_PUBLIC_KEY';
 
-document.addEventListener('DOMContentLoaded', () => {
+// Ported verbatim from the original script.js. Instead of listening for
+// DOMContentLoaded, this runs once after React has mounted the markup.
+export default function initSite() {
 
   // ── Init EmailJS ──────────────────────────────────────────────────────────
   if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
@@ -489,4 +493,4 @@ document.addEventListener('DOMContentLoaded', () => {
     spinner.style.display = loading ? 'inline' : 'none';
   }
 
-});
+}
