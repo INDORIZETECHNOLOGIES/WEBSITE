@@ -20,6 +20,7 @@ export default function Products() {
           <div className="product-chip reveal delay-1" role="listitem" id="prod-10"><span aria-hidden="true">🌐</span> Hyper Local Communities</div>
           <div className="product-chip reveal delay-2" role="listitem" id="prod-11"><span aria-hidden="true">💊</span> Medical Essentials Delivery</div>
           <div className="product-chip reveal delay-3" role="listitem" id="prod-12"><span aria-hidden="true">🤖</span> Process Automation Engine</div>
+          <div className="product-chip reveal delay-3" role="listitem" id="prod-12"><span aria-hidden="true">🔐</span> 20fourr</div>
         </div>
       </div>
     </section>
