@@ -74,6 +74,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link href="/careers" style={{ color: pathname === "/careers" ? "var(--text-primary)" : "", transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--text-primary)")} onMouseOut={(e) => (e.currentTarget.style.color = pathname === "/careers" ? "var(--text-primary)" : "var(--text-secondary)")}>
+              Careers
+            </Link>
+          </li>
+          <li>
             <Link href="/#contact" style={{ transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--text-primary)")} onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}>
               Contact
             </Link>

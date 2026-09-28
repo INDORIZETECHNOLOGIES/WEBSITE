@@ -30,6 +30,7 @@ export default function Footer() {
             <ul style={{ display: "flex", flexDirection: "column", gap: "12px", fontSize: "0.875rem", color: "var(--text-secondary)" }}>
               <li><Link href="/engineering" style={{ transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")} onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}>Engineering</Link></li>
               <li><Link href="/company" style={{ transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")} onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}>About Us</Link></li>
+              <li><Link href="/careers" style={{ transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")} onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}>Careers</Link></li>
               <li><Link href="/#contact" style={{ transition: "color 0.2s" }} onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")} onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}>Contact</Link></li>
             </ul>
           </div>
